@@ -24,6 +24,7 @@
     "@cometchat/calls-sdk-javascript": "^4.0.6",
     "@cometchat/chat-uikit-angular": "^4.1.0",
     "bcryptjs": "^2.4.3",
+    "crypto-browserify": "^3.12.0",
     "firebase": "^9.4.0",
     "rxfire": "^6.0.3",
     "rxjs": "~6.6.0",
