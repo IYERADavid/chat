@@ -1,0 +1,14 @@
+/* component-a.component.css */
+:host {
+    display: block;
+    height: 10vh; /* 10% of the view height */
+  }
+
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+
+  .names {
+    margin-right: 40px;
+    font-weight: bold;
+  }

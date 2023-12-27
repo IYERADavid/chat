@@ -1,0 +1,23 @@
+<div class="container">
+  <mat-card class="card">
+    <mat-card-header>
+      <mat-card-title>Create new account!</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form>
+        <mat-form-field class="full-width">
+          <input [(ngModel)]="userData.username" name="username" type="text" matInput placeholder="Username" />
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input [(ngModel)]="userData.email" name="email" type="email" matInput placeholder="Email" />
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input [(ngModel)]="userData.password" matInput name="password" type="password" placeholder="Password" />
+        </mat-form-field>
+
+        <button (click)="signup()" mat-raised-button color="accent" class="full-width">Signup</button>
+      </form>
+      <p class="login_link">Already have an account? <a routerLink="/login">Log in</a></p>
+    </mat-card-content>
+  </mat-card>
+</div>

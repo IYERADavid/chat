@@ -1,0 +1,49 @@
+.container {
+    background-image: url("https://img.freepik.com/free-photo/water-drops-texture-background-blue-design_53876-146648.jpg");
+    background-image: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+  
+.card {
+    max-width: 400px;
+    width: 100%;
+}
+  
+.full-width {
+    width: 100%;
+}
+  
+/* Center the title using flex */
+mat-card-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color:  #00ace6;
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+    /*change color of label*/
+    color: #00FFFF !important;
+}
+
+::ng-deep.mat-form-field-underline {
+    /*change color of underline*/
+    background-color: #00FFFF !important;
+} 
+::ng-deep.mat-form-field-ripple {
+    /*change color of underline when focused*/
+    background-color: #00FFFF !important;
+}
+
+.login_link{
+    margin: 30px 20px;
+    color: coral;
+}
+.login_link a {
+    color: #00ace6;
+    padding-left: 5px;
+}
