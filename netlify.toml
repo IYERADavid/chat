@@ -1,6 +1,6 @@
 [build]
-  publish = "dist/chat"
-  command = "ng build --prod"
+  publish = "dist/chat-app"
+  command = "ng build"
 [[redirects]]
   from = "/*"
   to = "/index.html"
