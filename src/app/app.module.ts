@@ -25,6 +25,7 @@ import { environment } from '../environments/environment';
 import { LoginComponent } from './components/login/login.component';
 import { ChatdashboardComponent } from './components/chatdashboard/chatdashboard.component';
 import { HeaderComponent } from './components/header/header.component';
+import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { HeaderComponent } from './components/header/header.component';
     SignupComponent,
     LoginComponent,
     ChatdashboardComponent,
-    HeaderComponent
+    HeaderComponent,
+    ForgotpasswordComponent
   ],
   imports: [
     BrowserModule,
