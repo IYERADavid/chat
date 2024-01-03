@@ -26,6 +26,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ChatdashboardComponent } from './components/chatdashboard/chatdashboard.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
+import { NewPasswordComponent } from './components/new-password/new-password.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassw
     LoginComponent,
     ChatdashboardComponent,
     HeaderComponent,
-    ForgotpasswordComponent
+    ForgotpasswordComponent,
+    NewPasswordComponent
   ],
   imports: [
     BrowserModule,

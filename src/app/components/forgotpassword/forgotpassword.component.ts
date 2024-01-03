@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { EmailService } from 'src/app/services/email.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import {v4 as uuidv4} from 'uuid';
+import { FirestoreService } from 'src/app/services/firestore.service';
 
 @Component({
   selector: 'app-forgotpassword',
@@ -8,13 +12,18 @@ import { Component, OnInit } from '@angular/core';
 export class ForgotpasswordComponent implements OnInit {
   email: string = "";
 
-  sendResetLink() {
-    // Simulate backend logic to generate a reset token
-    const resetToken = Math.random().toString(36).substring(2, 15);
-    localStorage.setItem('resetToken', resetToken);
+  constructor(private emailService: EmailService, 
+    private snackbar: MatSnackBar,
+    private chatapp: FirestoreService ) {}
 
-    // Simulate sending an email (you may use a service like Nodemailer in a real application)
-    console.log(`Reset link sent to ${this.email}`);
+  sendResetLink() {
+    const key = uuidv4()
+    this.chatapp.add_password_reset_key(key, this.email).then(()=>{
+      this.emailService.sendEmail(this.email, key).then(() => {
+        this.snackbar.open(" we have sent you an email !", "Close", {duration:5000})
+      }).catch(
+      (response) => this.snackbar.open(response.text, "Close", {duration:5000}))
+    }).catch((error) => this.snackbar.open(error, "Close", {duration:5000}))
   }
 
   ngOnInit(): void {
