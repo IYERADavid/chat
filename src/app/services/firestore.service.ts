@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, query, where, collectionData, addDoc, getDocs, doc, updateDoc, deleteDoc, serverTimestamp } from '@angular/fire/firestore'
+import { Firestore, collection, query, where, addDoc, getDocs, doc, updateDoc, deleteDoc, serverTimestamp } from '@angular/fire/firestore'
 import { loginInterface, signupInterface } from '../models/auth';
 import * as bcrypt from 'bcryptjs';
-import { error } from '@angular/compiler/src/util';
 
 @Injectable({
   providedIn: 'root'
