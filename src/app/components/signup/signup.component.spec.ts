@@ -126,7 +126,7 @@ describe('SignupComponent', () => {
     expect(firestoreService.adduser).toHaveBeenCalled()
     expect(component.userData.password).not.toBe('testpassword')
     expect(CometChatUIKit.createUser).toHaveBeenCalled()
-    expect(router.navigate).toHaveBeenCalled()
+    expect(router.navigate).toHaveBeenCalledWith(["/login"])
     expect(snackbar.open).toHaveBeenCalledOnceWith(`New account for ${component.userData.username} created successfully!`, 'Close',{duration: 5000})
   }));
 
