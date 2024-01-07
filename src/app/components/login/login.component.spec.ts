@@ -50,7 +50,7 @@ describe('LoginComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should find out that user already exists in firestore', fakeAsync(() => {
+  it('should call login method on click', fakeAsync(() => {
     spyOn(component, 'login');
 
     const loginbutton = fixture.nativeElement.querySelector('button');
