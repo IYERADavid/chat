@@ -1,14 +1,12 @@
 import { LoginComponent } from './login.component';
-import { ComponentFixture, TestBed, fakeAsync, flushMicrotasks, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
-import { DocumentReference, SnapshotMetadata, getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FirestoreService } from 'src/app/services/firestore.service';
-import { QuerySnapshot, DocumentData } from '@angular/fire/firestore';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CometChatUIKit } from '@cometchat/chat-uikit-angular';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
@@ -50,7 +48,7 @@ describe('LoginComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call login method on click', fakeAsync(() => {
+  it('should call login method on click', () => {
     spyOn(component, 'login');
 
     const loginbutton = fixture.nativeElement.querySelector('button');
@@ -58,5 +56,5 @@ describe('LoginComponent', () => {
     loginbutton.click();
 
     expect(component.login).toHaveBeenCalled();
-  }));
+  });
 });
