@@ -54,3 +54,9 @@ mat-card-header {
 .forgot-password a {
     color:hotpink;
 }
+
+.spinner-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

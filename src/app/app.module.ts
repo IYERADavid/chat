@@ -16,6 +16,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { AppRoutingModule } from './core/app-routing.module';
 import { AppComponent } from './app.component';
@@ -57,6 +58,7 @@ import { NewPasswordComponent } from './components/new-password/new-password.com
     MatSlideToggleModule,
     MatSelectModule,
     MatOptionModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

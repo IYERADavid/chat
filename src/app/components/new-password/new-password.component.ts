@@ -12,6 +12,7 @@ export class NewPasswordComponent implements OnInit {
   pass_key!: string;
   password: string = "";
   confirm_pass: string = "";
+  isLoading: boolean = false;
 
   constructor (private snackbar: MatSnackBar,
     private route: ActivatedRoute,
@@ -19,20 +20,24 @@ export class NewPasswordComponent implements OnInit {
     private router: Router) {}
 
   onreset(){
+    this.isLoading = true;
     if (this.password !== '' && this.password === this.confirm_pass){
       this.chatapp.update_user_password(this.pass_key, this.password).then((response)=>{
         if (response === "success") {
           this.snackbar.open("password changed successful!", "Close", {duration:5000})
+          this.isLoading = false;
           this.router.navigate(['login'])
         } else if (response == "expired pass_key") {
           this.snackbar.open("pass_key expired, try another!", "Close", {duration:5000})
           this.router.navigate(["forgot-password"])
         } else if (response == "" ){
           this.snackbar.open("invalid link url", "Close", {duration:5000})
+          this.isLoading = false;
         }
       })
     } else {
       this.snackbar.open("password doesn't match!", "Close", {duration:5000})
+      this.isLoading = false;
     }
   }
 

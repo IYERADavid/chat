@@ -47,3 +47,9 @@ mat-card-header {
     color: #00ace6;
     padding-left: 5px;
 }
+
+.spinner-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

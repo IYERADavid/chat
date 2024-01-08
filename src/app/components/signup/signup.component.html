@@ -15,7 +15,12 @@
           <input [(ngModel)]="userData.password" matInput name="password" type="password" placeholder="Password" />
         </mat-form-field>
 
-        <button (click)="signup()" mat-raised-button color="accent" class="full-width">Signup</button>
+        <button (click)="signup()" mat-raised-button color="accent" class="full-width" [disabled]="isLoading">
+          <span *ngIf="!isLoading">Signup</span>
+          <div class="spinner-btn" *ngIf="isLoading">
+            <mat-spinner diameter="32" color="warn" mode="indeterminate"></mat-spinner>
+          </div>
+        </button>
       </form>
       <p class="login_link">Already have an account? <a routerLink="/login">Log in</a></p>
     </mat-card-content>

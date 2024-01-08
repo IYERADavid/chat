@@ -14,6 +14,7 @@ import { environment } from '../../../environments/environment';
 })
 export class LoginComponent implements OnInit {
   userData: loginInterface = {email:"", password:""}
+  isLoading: boolean = false;
   constructor(
     private chatapp: FirestoreService, 
     private snackbar: MatSnackBar,
@@ -24,15 +25,18 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
+    this.isLoading = true;
     this.chatapp.loginuser(this.userData).then((user)=>{
       if(user.empty){
         this.snackbar.open("Invalid Email!!!", 'Close',{duration: 5000});
+        this.isLoading = false;
       } else {
         const user_data = user.docs[0].data()
         // Compare the entered password with the stored hashed password
         const passwordMatches = bcrypt.compareSync(this.userData.password,user_data.password);
         if (!passwordMatches) {
           this.snackbar.open("Invalid Password!!!", 'Close',{duration: 5000});
+          this.isLoading = false;
           return;
         }
         CometChatUIKit.logout().finally(()=>{
@@ -41,10 +45,10 @@ export class LoginComponent implements OnInit {
             const userName: string | undefined = (userobj as any)?.name;
             this.router.navigate(["/"])
             this.snackbar.open(`welcome back ${userName}!`, 'Close',{duration: 5000});
-          }).catch((error)=> this.snackbar.open(error, 'Close',{duration: 5000}));
+          }).catch((error)=> (this.snackbar.open(error, 'Close',{duration: 5000}), this.isLoading = false));
         })
       }
-    }).catch((error)=> this.snackbar.open(error, 'Close',{duration: 5000}));
+    }).catch((error)=> (this.snackbar.open(error, 'Close',{duration: 5000}), this.isLoading = false));
   }
 
 }

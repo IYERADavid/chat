@@ -15,6 +15,7 @@ import * as bcrypt from 'bcryptjs';
 })
 export class SignupComponent implements OnInit {
   userData: signupInterface = {username: "", password:"", email: ""}
+  isLoading: boolean = false;
 
   constructor( 
     private snackbar: MatSnackBar,
@@ -27,11 +28,14 @@ export class SignupComponent implements OnInit {
   }
 
   signup() {
+    this.isLoading = true;
     if (this.userData.username === "" || this.userData.password === "" || this.userData.email === ""){
       this.snackbar.open('Please fill out all fields!', 'Close',{duration: 5000});
+      this.isLoading = false;
     } 
     else if (!this.isValidEmail(this.userData.email)) {
       this.snackbar.open('Please enter a valid email address!', 'Close', { duration: 5000 });
+      this.isLoading = false;
     } 
     else {
       this.chatapp.does_user_exist(this.userData.email).then(user => {
@@ -55,17 +59,18 @@ export class SignupComponent implements OnInit {
               this.snackbar.open(`New account for ${this.userData.username} created successfully!`, 'Close',{duration: 5000});
             
             }).catch((error)=> {
-              this.chatapp.deleteuser(userdata.id).then(()=>this.snackbar.open(error, 'Close',{duration: 5000}))
+              this.chatapp.deleteuser(userdata.id).then(()=>(this.snackbar.open(error, 'Close',{duration: 5000}), this.isLoading = false));
             })
 
-          }).catch((error)=> this.snackbar.open(error, 'Close',{duration: 5000}))
+          }).catch((error)=> (this.snackbar.open(error, 'Close',{duration: 5000}), this.isLoading = false));
 
         } else {
           console.log(user)
           this.snackbar.open("Email already exist", 'Close',{duration: 5000});
+          this.isLoading = false;
         }
 
-      }).catch((error)=> this.snackbar.open(error, 'Close',{duration: 5000}))
+      }).catch((error)=> (this.snackbar.open(error, 'Close',{duration: 5000}), this.isLoading = false));
 
     }
   }
