@@ -13,5 +13,10 @@ export const environment = {
     APP_ID: "2500818b54956bd1", // Replace with your App ID
     REGION: "in", // Replace with your App Region ("eu" or "us")
     AUTH_KEY: "d6becc608c596a53e990b81657e0196678feec9b" // Replace with your Auth Key
+  },
+  Emailconfig: {
+    service_id: "service_5d24rsa",
+    template_id: "template_peqyg4w",
+    api_key: "O-J0yRdjVTz5WhzYB"
   }
 };
