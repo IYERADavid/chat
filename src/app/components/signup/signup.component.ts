@@ -7,6 +7,7 @@ import { signupInterface } from 'src/app/models/auth';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { Router } from '@angular/router';
 import * as bcrypt from 'bcryptjs';
+import { isValidEmail, isStrongPassword } from '../validations';
 
 @Component({
   selector: 'app-signup',
@@ -16,6 +17,7 @@ import * as bcrypt from 'bcryptjs';
 export class SignupComponent implements OnInit {
   userData: signupInterface = {username: "", password:"", email: ""}
   isLoading: boolean = false;
+  isStrong_pass: any;
 
   constructor( 
     private snackbar: MatSnackBar,
@@ -29,14 +31,20 @@ export class SignupComponent implements OnInit {
 
   signup() {
     this.isLoading = true;
+    this.isStrong_pass = isStrongPassword(this.userData.password);
+
     if (this.userData.username === "" || this.userData.password === "" || this.userData.email === ""){
       this.snackbar.open('Please fill out all fields!', 'Close',{duration: 5000});
       this.isLoading = false;
     } 
-    else if (!this.isValidEmail(this.userData.email)) {
+    else if (!isValidEmail(this.userData.email)) {
       this.snackbar.open('Please enter a valid email address!', 'Close', { duration: 5000 });
       this.isLoading = false;
-    } 
+    }
+    else if(typeof this.isStrong_pass === 'string'){
+      this.snackbar.open(this.isStrong_pass, 'Close', { duration: 5000 });
+      this.isLoading = false;
+    }
     else {
       this.chatapp.does_user_exist(this.userData.email).then(user => {
         if(user.empty){
@@ -73,11 +81,5 @@ export class SignupComponent implements OnInit {
       }).catch((error)=> (this.snackbar.open(error, 'Close',{duration: 5000}), this.isLoading = false));
 
     }
-  }
-  
-  isValidEmail(email: string): boolean {
-    // Implement email validation logic (you can use a regular expression)
-    // Return true if the email is valid, false otherwise
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }
 }
